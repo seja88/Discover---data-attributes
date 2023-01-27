@@ -1,27 +1,20 @@
-const alerts = [
-    'Unable to access resource. User is not authorized.',
-    'You are missing proper user permissions.',
-    'Administrators have been notified of this action.',
-    'Please remain where you are, police is on the way.'
-];
+//1. find all .alert elements on the page
+//2. find the value in their data-type attributes
+//3. based on the value, add the appropriate class name to the alert element (using .classList.add())
 
-const newDiv = document.createElement('div')
-newDiv.className = 'alerts'
-document.body.appendChild(newDiv)
-
-
-
-for (let i = 0; i < alerts.length; i++) {
-    const alert = alerts[i];
-    const alertElement = document.createElement('div');
-    const alertElementText = document.createElement('div');
-    const alertElementClose = document.createElement('div');
-    alertElement.classList.add('alert');
-    alertElementText.classList.add('alert__text');
-    alertElementClose.classList.add('alert__close');
-    alertElementText.innerHTML = alert;
-    alertElementClose.innerHTML = '&times;';
-    newDiv.appendChild(alertElement);
-    alertElement.appendChild(alertElementText);
-    alertElement.appendChild(alertElementClose);
-}
+//1. find all .alert elements on the page
+const alerts = document.querySelectorAll('.alert')
+//2. find the value in their data-type attributes
+alerts.forEach(alert => {
+    const dataType = alert.getAttribute('data-type');
+    if (dataType === 'error') {
+        //3. based on the value, add the appropriate class name...
+        alert.classList.add('alert--error');
+    } else if (dataType === 'warning') {
+        //3. 
+        alert.classList.add('alert--warning');
+    } else if (dataType === 'success') {
+        //3. 
+        alert.classList.add('alert--success');
+    }
+});
